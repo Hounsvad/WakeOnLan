@@ -78,10 +78,16 @@ public class MainWindowController implements Initializable {
         deviceList.getSelectionModel().clearSelection();
     }
 
+    /**
+     * Displays data for the selected device
+     */
     @FXML
     private void deviceSelected() {
         Device device = (Device) deviceList.getSelectionModel().getSelectedItem();
-        device.
+        deviceName.setText(device.getName());
+        deviceIP.setText(device.getIp());
+        deviceMAC.setText(device.getMac());
+        devicePort.setText(Integer.toString(device.getPort()));
     }
 
     /**
@@ -94,12 +100,20 @@ public class MainWindowController implements Initializable {
         deviceList.getItems().remove(deviceList.getSelectionModel().getSelectedIndex());
     }
 
+    /**
+     * Updates the device based on the entered data
+     *
+     * @param event
+     */
     @FXML
     private void updateDevice(KeyEvent event) {
+        Device device = (Device) deviceList.getSelectionModel().getSelectedItem();
+        //insert switch that checks which field has been updated and updates selectivly
     }
 
     @FXML
     private void tutorial(ActionEvent event) {
+        //open a tutorial window for showing an intoduction to WOL and how to use the software
     }
 
     @FXML
@@ -122,7 +136,7 @@ public class MainWindowController implements Initializable {
      * The message will be formatted as Type:Message
      *
      * @param message to be displayed
-     * @param type to be displayed
+     * @param type    to be displayed
      */
     private void post(String message, MessageType type) {
         processLabel.setText(type + message);
