@@ -61,8 +61,18 @@ public class Device {
         if (mac.matches("([A-F0-9]{2}[-][A-F0-9]{2}[-][A-F0-9]{2}[-][A-F0-9]{2}[-][A-F0-9]{2}[-][A-F0-9]{2})")) {
             this.mac = mac;
         }
-        this.ip = ip;
-        if (ip.length == 4 && ip[0] ==) {
+        if (ip.length == 4) {
+            boolean correct = true;
+            for (int i : ip) {
+                if (i < 0 || i > 255) {
+                    correct = false;
+                }
+            }
+            if (correct) {
+                this.ip = ip;
+            }
+        }
+        if () {
             this.port = port;
         }
     }
