@@ -29,6 +29,7 @@ import javafx.util.Duration;
  */
 public class MainWindowController implements Initializable {
 
+    private final static boolean DEBUG = true;
     @FXML
     private ListView<Device> deviceList;
     @FXML
@@ -181,7 +182,7 @@ public class MainWindowController implements Initializable {
      * The message will be formatted as Type:Message
      *
      * @param message to be displayed
-     * @param type to be displayed
+     * @param type    to be displayed
      */
     private void post(String message, MessageType type) {
         processLabel.setText(type + message);

@@ -9,6 +9,7 @@ package main;
  */
 public class Device {
 
+    private final static boolean DEBUG = true;
     /**
      * The display name of the device
      */
@@ -105,21 +106,24 @@ public class Device {
      * Pass null to keep a variable at its current value
      *
      * @param name is the name of the device
-     * @param mac is the mac of the device
-     * @param ip is the ip of the device
+     * @param mac  is the mac of the device
+     * @param ip   is the ip of the device
      * @param port is the port of the device
      * @throws IllegalArgumentException upon a wrong input
      */
     public final void update(String name, String mac, String ip, Integer port) throws IllegalArgumentException {
+        StringBuilder error = new StringBuilder();
         if (name != null && name.matches("([0-9,A-Å,a-å]*)")) {
             this.name = name;
         } else {
-            throw new IllegalArgumentException("The name contained one or more illegal characters");
+            System.out.print((DEBUG && name != null ? "The illegal name was: " + name + "\n" : (DEBUG ? "Name was null" : "")));
+            error.append(":The name contained one or more illegal characters:");
         }
         if (mac != null && mac.matches("([A-F0-9]{2}[-:][A-F0-9]{2}[-:][A-F0-9]{2}[-:][A-F0-9]{2}[-:][A-F0-9]{2}[-:][A-F0-9]{2})")) {
             this.mac = mac;
         } else {
-            throw new IllegalArgumentException("The was invalid");
+            System.out.print((DEBUG && mac != null ? "The illegal MAC was: " + mac + "\n" : (DEBUG ? "MAC was null" : "")));
+            error.append(":The was invalid:");
         }
         if (ip != null && ip.matches("([0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3})")) {
             String[] tokens = ip.split(".");
@@ -136,12 +140,17 @@ public class Device {
             }
             this.ip = ip;
         } else {
-            throw new IllegalArgumentException("The ip was invalid");
+            System.out.print((DEBUG && ip != null ? "The illegal ip was: " + ip + "\n" : (DEBUG ? "ip was null" : "")));
+            error.append(":The ip was invalid:");
         }
         if (port != null && port < 65535 && port > 0) {
             this.port = port;
         } else {
-            throw new IllegalArgumentException("The port was out of bounds");
+            System.out.print((DEBUG && port != null ? "The illegal port was: " + port + "\n" : (DEBUG ? "port was null" : "")));
+            error.append(":The port was out of bounds:");
+        }
+        if (!error.toString().equalsIgnoreCase("")) {
+            //throw new IllegalArgumentException(error.toString());
         }
     }
 
