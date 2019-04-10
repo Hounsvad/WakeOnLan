@@ -105,8 +105,8 @@ public class Device {
      * Pass null to keep a variable at its current value
      *
      * @param name is the name of the device
-     * @param mac  is the mac of the device
-     * @param ip   is the ip of the device
+     * @param mac is the mac of the device
+     * @param ip is the ip of the device
      * @param port is the port of the device
      * @throws IllegalArgumentException upon a wrong input
      */
@@ -116,7 +116,7 @@ public class Device {
         } else {
             throw new IllegalArgumentException("The name contained one or more illegal characters");
         }
-        if (mac != null && mac.matches("([A-F0-9]{2}[-][A-F0-9]{2}[-][A-F0-9]{2}[-][A-F0-9]{2}[-][A-F0-9]{2}[-][A-F0-9]{2})")) {
+        if (mac != null && mac.matches("([A-F0-9]{2}[-:][A-F0-9]{2}[-:][A-F0-9]{2}[-:][A-F0-9]{2}[-:][A-F0-9]{2}[-:][A-F0-9]{2})")) {
             this.mac = mac;
         } else {
             throw new IllegalArgumentException("The was invalid");
